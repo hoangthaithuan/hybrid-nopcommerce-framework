@@ -4,7 +4,7 @@
 
     <test name="Run on Firefox browser">
         <classes>
-            <class name="com.nopcommerce.user.User01_Login_Register" />
+            <class name="com.nopcommerce.user.Level01_Repeat_Yourself" />
         </classes>
     </test>
 
