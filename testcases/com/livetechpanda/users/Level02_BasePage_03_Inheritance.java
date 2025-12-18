@@ -1,6 +1,7 @@
 package com.livetechpanda.users;
 
 import commons.BasePage;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -36,57 +37,56 @@ public class Level02_BasePage_03_Inheritance extends BasePage {
 
     @Test
     public void TC01_Register() {
-        waitForElementClickable(driver, "//a[@class='ico-register']");
-        clickToElement(driver, "//a[@class='ico-register']");
+        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
+        clickToElement(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
 
-        waitForElementClickable(driver, "//input[@id='gender-male']");
-        clickToElement(driver, "//input[@id='gender-male']");
+        waitForElementClickable(driver, "//div[@id='header-account']//li/a[@title='Register']");
+        clickToElement(driver,"//div[@id='header-account']//li/a[@title='Register']");
 
-        sendKeyToElement(driver, "//input[@id='FirstName']", firstName);
-        sendKeyToElement(driver, "//input[@id='LastName']", lastName);
+        sendKeyToElement(driver, "//input[@id='firstname']", firstName);
+        sendKeyToElement(driver, "//input[@id='lastname']", lastName);
 
-        getElement(driver, "//input[@id='Email']").clear();
-        sendKeyToElement(driver, "//input[@id='Email']", emailAdress);
-        sendKeyToElement(driver, "//input[@id='Company']", emailAdress);
-        getElement(driver, "//input[@id='Password']").clear();
-        sendKeyToElement(driver, "//input[@id='Password']", passWord);
-        sendKeyToElement(driver, "//input[@id='ConfirmPassword']", passWord);
-        waitForElementClickable(driver, "//button[@id='register-button']");
-        clickToElement(driver, "//button[@id='register-button']");
+        sendKeyToElement(driver, "//input[@id='email_address']", emailAdress);
+        sendKeyToElement(driver, "//input[@id='password']", passWord);
+        sendKeyToElement(driver, "//input[@id='confirmation']", passWord);
+        waitForElementClickable(driver, "//button[@title='Register']");
+        clickToElement(driver, "//button[@title='Register']");
 
-        Assert.assertEquals(getElementText(driver, "//div[@class='result']"),
-                "Your registration completed");
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        Assert.assertEquals(getElementText(driver, "//li[@class='success-msg']//span"),
+                "Thank you for registering with Main Website Store.");
 
     }
 
     @Test
     public void TC02_Login() {
-        waitForElementClickable(driver, "//a[@class='ico-logout']");
-        clickToElement(driver, "//a[@class='ico-logout']");
+        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
+        clickToElement(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
 
-        sleepInSecond(5000);
+        waitForElementClickable(driver, "//div[@id='header-account']//li/a[@title='Log Out']");
+        clickToElement(driver, "//div[@id='header-account']//li/a[@title='Log Out']");
 
-        waitForElementClickable(driver, "//a[@class='ico-login']");
-        clickToElement(driver, "//a[@class='ico-login']");
+        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
+        clickToElement(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
 
-        getElement(driver, "//input[@id='Email']").clear();
-        sendKeyToElement(driver, "//input[@id='Email']", emailAdress);
-        getElement(driver, "//input[@id='Password']").clear();
-        sendKeyToElement(driver, "//input[@id='Password']", passWord);
-        clickToElement(driver, "//button[contains(@class,'login-button')]");
-        waitForElementClickable(driver, "//button[contains(@class,'login-button')]");
-        clickToElement(driver, "//button[contains(@class,'login-button')]");
+        waitForElementClickable(driver, "//div[@id='header-account']//li/a[@title='Log In']");
+        clickToElement(driver, "//div[@id='header-account']//li/a[@title='Log In']");
 
-        Assert.assertTrue(isElementDisplayed(driver, "//a[@class='ico-account']"));
+        sendKeyToElement(driver, "//input[@id='email']", emailAdress);
+        sendKeyToElement(driver, "//input[@id='pass']", passWord);
+        waitForElementClickable(driver, "//button[@id='send2']");
+        clickToElement(driver, "//button[@id='send2']");
+
+        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
+        Assert.assertTrue(isElementDisplayed(driver, "//p[@class='hello']//strong"));
     }
 
     @Test
     public void TC03_MyAccount() {
-        clickToElement(driver, "//a[@class='ico-account']");
-        waitForElementClickable(driver, "//a[@class='ico-account']");
-        clickToElement(driver, "//a[@class='ico-account']");
-        Assert.assertTrue(isElementSelected(driver, "//input[@id='gender-male']"));
-        Assert.assertEquals(getElementAttribute(driver, "//input[@id='FirstName']", "value"), firstName);
+        Assert.assertEquals(getElementText(driver, "//div[@class='box-title']//h3"), "Contact Information");
+        Assert.assertEquals(getElementAttribute(driver, "//div[@class='box-title']//a", "href"), "http://live.techpanda.org/index.php/customer/account/edit/");
     }
 
     @AfterClass
