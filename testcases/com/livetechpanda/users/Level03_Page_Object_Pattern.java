@@ -1,14 +1,18 @@
 package com.livetechpanda.users;
 
 import commons.BasePage;
+import commons.BaseTest;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
@@ -18,8 +22,7 @@ import pageObjects.RegisterPageObject;
 import java.time.Duration;
 import java.util.Random;
 
-public class Level03_Page_Object_Pattern extends BasePage {
-    private static final Logger log = LoggerFactory.getLogger(Level03_Page_Object_Pattern.class);
+public class Level03_Page_Object_Pattern extends BaseTest {
     /*
                     10 bước để bắt đầu build
 
@@ -51,14 +54,10 @@ public class Level03_Page_Object_Pattern extends BasePage {
     String firstName, lastName, emailAdress, passWord;
 
     // Pre-condition
+    @Parameters ("browser")
     @BeforeClass
-    public void beforeClass() {
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-
-        // Mở url -> qua Homepage
-        driver.get("https://live.techpanda.org/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    public void beforeClass(String browserName) {
+        driver = getBrowserDriver(browserName);
 
         // Data
         firstName = "Trent";
@@ -170,7 +169,4 @@ public class Level03_Page_Object_Pattern extends BasePage {
         driver.quit();
     }
 
-    private int generateRandomNumber() {
-        return new Random().nextInt(999);
-    }
 }
