@@ -21,9 +21,10 @@ public class LoginPageObject extends BasePage {
 
     }
 
-    public void clickToLoginButton() {
+    public MyaccountPageObject clickToLoginButton() {
         waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
+        return PageGenerator.getMyAccountPage(driver);
 
     }
 }

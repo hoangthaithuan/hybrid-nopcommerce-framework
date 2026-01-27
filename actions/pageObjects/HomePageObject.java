@@ -24,9 +24,10 @@ public class HomePageObject extends BasePage {
         clickToElement(driver, HomePageUI.ACCOUNTMENU_LINK);
     }
 
-    public void clickToRegisterLink() {
+    public RegisterPageObject clickToRegisterLink() {
         waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToElement(driver, HomePageUI.REGISTER_LINK);
+        return PageGenerator.getRegisterPage(driver);
     }
 
     public String getRegisterSuccessMessage() {
@@ -39,8 +40,9 @@ public class HomePageObject extends BasePage {
         clickToElement(driver, HomePageUI.LOGOUT_LINK);
     }
 
-    public void clickToLoginLink() {
+    public LoginPageObject clickToLoginLink() {
         waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
         clickToElement(driver, HomePageUI.LOGIN_LINK);
+        return PageGenerator.getLoginPage(driver);
     }
 }
