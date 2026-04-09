@@ -22,13 +22,13 @@ public class HomePageUI {
 
     public static final String ACCOUNTMENU_LINK = "//a[contains(@class,'skip-account')]/span[text()='Account']";
 
-    public static final String REGISTER_LINK = "//div[@id='header-account']//li/a[@title='Register']";
+    public static final String REGISTER_LINK = "//a[@title='Register']";
 
-    public static final String REGISTER_SUCCESS_MESSAGE = "//li[@class='success-msg']//span";
+    public static final String REGISTER_SUCCESS_MESSAGE = "//li[@class='success-msg']//li/span";
 
-    public static final String LOGOUT_LINK = "//div[@id='header-account']//li/a[@title='Log Out']";
+    public static final String LOGOUT_LINK = "//a[@title='Log Out']";
 
-    public static final String LOGIN_LINK = "//div[@id='header-account']//li/a[@title='Log In']";
+    public static final String LOGIN_LINK = "//a[@title='Log In']";
 
 
 

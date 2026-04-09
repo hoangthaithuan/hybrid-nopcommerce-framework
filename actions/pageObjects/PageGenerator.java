@@ -19,4 +19,16 @@ public class PageGenerator {
     public static MyaccountPageObject getMyAccountPage (WebDriver driver) {
         return new MyaccountPageObject(driver);
     }
+
+    public static AddressPageObject getAddressPage (WebDriver driver) {
+        return new AddressPageObject(driver);
+    }
+
+    public static OrderPageObject getOrderPage (WebDriver driver) {
+        return new OrderPageObject(driver);
+    }
+
+    public static ProdReviewsPageObject getProdReviewPage (WebDriver driver) {
+        return new ProdReviewsPageObject(driver);
+    }
 }

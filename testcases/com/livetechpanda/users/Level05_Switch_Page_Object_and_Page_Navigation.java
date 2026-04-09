@@ -10,34 +10,17 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
 
-public class Level05_Page_Generator extends BaseTest {
-    /*
-                    10 bước để bắt đầu build
+public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
 
-             1 - Phân tích testcase về mặt tính năng/nghiệp vụ để xác định số page/flow như nào
-             2 - Vẽ lại flow đó
-             3 - Tạo POP
-             4 - Tạo test class
-             5 - Viết hàm giả trên Test Class
-             6 - Implement các hàm trên Page Object Class
-             7 - Define các locator ở Page UI Class: bao nhiêu class bên Page Object -> bấy nhiêu bên Page UI
-             8 - Ráp UI/locator vào bên Page Object Class, ráp action bên basepage, và map được driver: dùng các hàm bên BasePagef
-             9 - Ráp data test vào bên Test Class
-             10 - Run and Done
-             --------------------------------------------------------------
-
-             - Những đoạn nào cần khởi tạo page thì implement luôn
-             - Các action có truyền tham số thì tham số là Data chứ ko phải locator
-             - Chuyển đến trang nào thì new trang đó lên
-             - Viết hàm giả trước - tạo hàm sau: giúp gợi ý nhanh hàm để tạo bên page object class
-
-         */
     // Declare variable
     private WebDriver driver;
     private HomePageObject homePage;
     private RegisterPageObject registerPage;
     private LoginPageObject loginPage;
     private MyaccountPageObject myAccPage;
+    private AddressPageObject addressPage;
+    private OrderPageObject orderPage;
+    private ProdReviewsPageObject prodReviewPage;
 
     String firstName, lastName, emailAdress, passWord;
 
@@ -54,30 +37,30 @@ public class Level05_Page_Generator extends BaseTest {
         passWord = "Trent@12345";
 
         // Page ảo được sinh ra và bắt đầu làm những action của page ảo đó
-        homePage = PageGenerator.getHomePage(driver);
+        homePage = new HomePageObject(driver);
     }
 
     // Testcases
     @Test
     public void User_01_Register() {
         homePage.clickToAccountMenu();
-        registerPage = homePage.clickToRegisterLink();
+        homePage.openRegisterPage();
 //
 //        // Từ homepage qua register page
 //        // Page đó sinh ra và bắt đầu hành động làm những action của page đó -> khởi tạo = new lên
+        registerPage = new RegisterPageObject(driver);
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
         registerPage.enterToEmailTextBox(emailAdress);
         registerPage.enterToPasswordTextBox(passWord);
         registerPage.enterToConfirmPasswordTextBox(passWord);
-        homePage = registerPage.clickToRegisterButton();
+        registerPage.clickToRegisterButton();
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
+        homePage = new HomePageObject(driver);
         Assert.assertEquals(homePage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
-
-
     }
 
     @Test
@@ -86,23 +69,42 @@ public class Level05_Page_Generator extends BaseTest {
         homePage.clickToLogoutLink();
 
         homePage.clickToAccountMenu();
-        loginPage = homePage.clickToLoginLink();
+        homePage.openLoginPage();
 
+        loginPage = new LoginPageObject(driver);
         loginPage.enterToEmailTextbox(emailAdress);
         loginPage.enterToPasswordTextbox(passWord);
-        myAccPage = loginPage.clickToLoginButton();
+        loginPage.openMyAccountPage();
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
+        myAccPage = new MyaccountPageObject(driver);
         Assert.assertTrue(myAccPage.isHelloTextDisplayed());
-
     }
 
     @Test
     public void User_03_MyAccount() {
         Assert.assertTrue(myAccPage.isTitleDisplayed());
         Assert.assertEquals(myAccPage.getValueOfAttribute(), "http://live.techpanda.org/index.php/customer/account/edit/");
+    }
+
+    @Test
+    public void User_04_Switch_Page () {
+        // My account -> Address
+        addressPage = myAccPage.openAddressPage();
+
+        // Address -> Order
+        orderPage = addressPage.openOrderPage();
+
+        // Order -> Prod Review
+        prodReviewPage = orderPage.openProdReviewPage();
+
+        // Prod Review -> Address
+        addressPage = prodReviewPage.openAddressPage();
+
+        // Address -> My account
+        myAccPage = addressPage.openMyAccPage();
     }
 
     // Post-condition

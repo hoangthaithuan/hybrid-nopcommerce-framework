@@ -2,13 +2,16 @@ package pageObjects;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageUIs.AddressPageUI;
 import pageUIs.MyaccountPageUI;
 
-public class MyaccountPageObject extends BasePage {
+public class MyaccountPageObject extends SidebarPageObject {
 
     private WebDriver driver;
 
     public MyaccountPageObject(WebDriver driver) {
+        // super để gọi đến parameter của thằng cha, vì thằng cha cũng khởi tạo driver
+        super(driver);
         this.driver = driver;
     }
 
@@ -21,14 +24,15 @@ public class MyaccountPageObject extends BasePage {
         waitForElementVisible(driver, MyaccountPageUI.MY_DASHBOARD_TEXT);
         return isElementDisplayed(driver, MyaccountPageUI.MY_DASHBOARD_TEXT);
     }
+    public boolean isHelloTextDisplayed() {
+        waitForElementVisible(driver, MyaccountPageUI.HELLO_TEXT);
+        return isElementDisplayed(driver, MyaccountPageUI.HELLO_TEXT);
+    }
 
     public String getValueOfAttribute() {
         waitForElementVisible(driver, MyaccountPageUI.EDIT_INFO_VAVLUE);
         return getElementAttribute(driver, MyaccountPageUI.EDIT_INFO_VAVLUE, "href");
     }
 
-    public boolean isHelloTextDisplayed() {
-        waitForElementVisible(driver, MyaccountPageUI.HELLO_TEXT);
-        return isElementDisplayed(driver, MyaccountPageUI.HELLO_TEXT);
-    }
+
 }

@@ -3,24 +3,24 @@
 <suite name="NopCommerce Automation Testing">
 
     <test name="Run on Firefox browser">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="com.livetechpanda.users.Level03_Page_Object_Pattern" />
-        </classes>
-    </test>
-
-    <test name="Run on Chrome browser">
         <parameter name="browser" value="firefox" />
         <classes>
-            <class name="com.livetechpanda.users.Level03_Page_Object_Pattern" />
+            <class name="com.livetechpanda.users.Level05_Switch_Page_Object_and_Page_Navigation" />
         </classes>
     </test>
+<!--    Chrome với edge chưa xử lí accept form-->
+<!--    <test name="Run on Chrome browser">-->
+<!--        <parameter name="browser" value="chrome" />-->
+<!--        <classes>-->
+<!--            <class name="com.livetechpanda.users.Level06_Switch_Page_Object" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Run on Edge browser">
-        <parameter name="browser" value="edge" />
-        <classes>
-            <class name="com.livetechpanda.users.Level03_Page_Object_Pattern" />
-        </classes>
-    </test>
+<!--    <test name="Run on Edge browser">-->
+<!--        <parameter name="browser" value="edge" />-->
+<!--        <classes>-->
+<!--            <class name="com.livetechpanda.users.Level06_Switch_Page_Object" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite> <!-- Suite -->

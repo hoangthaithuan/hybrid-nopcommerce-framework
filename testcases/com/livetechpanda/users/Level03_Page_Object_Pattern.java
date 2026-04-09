@@ -73,7 +73,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
     @Test
     public void User_01_Register() {
         homePage.clickToAccountMenu();
-        homePage.clickToRegisterLink();
+        homePage.openRegisterPage();
 //
 //        // Từ homepage qua register page
 //        // Page đó sinh ra và bắt đầu hành động làm những action của page đó -> khởi tạo = new lên
@@ -119,12 +119,12 @@ public class Level03_Page_Object_Pattern extends BaseTest {
         homePage.clickToLogoutLink();
 
         homePage.clickToAccountMenu();
-        homePage.clickToLoginLink();
+        homePage.openLoginPage();
 
         loginPage = new LoginPageObject(driver);
         loginPage.enterToEmailTextbox(emailAdress);
         loginPage.enterToPasswordTextbox(passWord);
-        loginPage.clickToLoginButton();
+        loginPage.openMyAccountPage();
 
         Alert alert = driver.switchTo().alert();
         alert.accept();
