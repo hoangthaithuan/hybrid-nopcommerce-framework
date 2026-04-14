@@ -1,26 +1,17 @@
 package com.livetechpanda.users;
 
-import commons.BasePage;
 import commons.BaseTest;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyaccountPageObject;
-import pageObjects.RegisterPageObject;
-
-import java.time.Duration;
-import java.util.Random;
+import pageObjects.user.UserHomePO;
+import pageObjects.user.UserLoginPO;
+import pageObjects.user.UserMyaccountPO;
+import pageObjects.user.UserRegisterPO;
 
 public class Level03_Page_Object_Pattern extends BaseTest {
     /*
@@ -46,10 +37,10 @@ public class Level03_Page_Object_Pattern extends BaseTest {
          */
     // Declare variable
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private MyaccountPageObject myAccPage;
+    private UserHomePO homePage;
+    private UserRegisterPO registerPage;
+    private UserLoginPO loginPage;
+    private UserMyaccountPO myAccPage;
 
     String firstName, lastName, emailAdress, passWord;
 
@@ -66,7 +57,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
         passWord = "Trent@12345";
 
         // Page ảo được sinh ra và bắt đầu làm những action của page ảo đó
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
     }
 
     // Testcases
@@ -77,7 +68,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
 //
 //        // Từ homepage qua register page
 //        // Page đó sinh ra và bắt đầu hành động làm những action của page đó -> khởi tạo = new lên
-        registerPage = new RegisterPageObject(driver);
+        registerPage = new UserRegisterPO(driver);
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
         registerPage.enterToEmailTextBox(emailAdress);
@@ -88,7 +79,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         Assert.assertEquals(homePage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
 
 //        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");
@@ -121,7 +112,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
         homePage.clickToAccountMenu();
         homePage.openLoginPage();
 
-        loginPage = new LoginPageObject(driver);
+        loginPage = new UserLoginPO(driver);
         loginPage.enterToEmailTextbox(emailAdress);
         loginPage.enterToPasswordTextbox(passWord);
         loginPage.openMyAccountPage();
@@ -129,7 +120,7 @@ public class Level03_Page_Object_Pattern extends BaseTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
-        myAccPage = new MyaccountPageObject(driver);
+        myAccPage = new UserMyaccountPO(driver);
         Assert.assertTrue(myAccPage.isHelloTextDisplayed());
 
 //        waitForElementClickable(driver, "//a[contains(@class,'skip-account')]/span[text()='Account']");

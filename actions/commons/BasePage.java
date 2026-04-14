@@ -6,13 +6,10 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.*;
-import pageUIs.*;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
-import java.util.SimpleTimeZone;
 
 public class BasePage {
     /*
@@ -327,6 +324,11 @@ public class BasePage {
             throw new RuntimeException(e);
         }
     }
+
+    // Khởi tạo admin site từ user, nhưng bản chất chỉ là get cái url để dùng nên dùng lái hàm openPageURL luôn ko cần define hàm mới như này
+//    public void openAdminSite(WebDriver driver, String adminUrlValue) {
+//        openPageURL(driver, adminUrlValue);
+//    }
 
 
 }

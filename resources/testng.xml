@@ -2,10 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="NopCommerce Automation Testing">
 
+    <parameter name="userURL" value="https://live.techpanda.org/index.php/" />
+    <parameter name="adminURL" value="https://live.techpanda.org/index.php/backendlogin/" />
+
     <test name="Run on Firefox browser">
         <parameter name="browser" value="firefox" />
         <classes>
-            <class name="com.livetechpanda.users.Level05_Switch_Page_Object_and_Page_Navigation" />
+            <class name="com.livetechpanda.users.Level06_Switch_Site_URL" />
         </classes>
     </test>
 <!--    Chrome với edge chưa xử lí accept form-->

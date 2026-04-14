@@ -1,34 +1,40 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.admin.AdminLoginPO;
+import pageObjects.user.*;
 
 public class PageGenerator {
 
-    public static HomePageObject getHomePage (WebDriver driver) {
-        return new HomePageObject(driver);
+    public static UserHomePO getUserHomePage(WebDriver driver) {
+        return new UserHomePO(driver);
     }
 
-    public static LoginPageObject getLoginPage (WebDriver driver) {
-        return new LoginPageObject(driver);
+    public static UserLoginPO getUserLoginPage(WebDriver driver) {
+        return new UserLoginPO(driver);
     }
 
-    public static RegisterPageObject getRegisterPage (WebDriver driver) {
-        return new RegisterPageObject(driver);
+    public static UserRegisterPO getUserRegisterPage(WebDriver driver) {
+        return new UserRegisterPO(driver);
     }
 
-    public static MyaccountPageObject getMyAccountPage (WebDriver driver) {
-        return new MyaccountPageObject(driver);
+    public static UserMyaccountPO getUserMyAccountPage(WebDriver driver) {
+        return new UserMyaccountPO(driver);
     }
 
-    public static AddressPageObject getAddressPage (WebDriver driver) {
-        return new AddressPageObject(driver);
+    public static UserAddressPO getUserAddressPage(WebDriver driver) {
+        return new UserAddressPO(driver);
     }
 
-    public static OrderPageObject getOrderPage (WebDriver driver) {
-        return new OrderPageObject(driver);
+    public static UserOrderPO getUserOrderPage(WebDriver driver) {
+        return new UserOrderPO(driver);
     }
 
-    public static ProdReviewsPageObject getProdReviewPage (WebDriver driver) {
-        return new ProdReviewsPageObject(driver);
+    public static UserProdReviewsPO getUserProdReviewPage(WebDriver driver) {
+        return new UserProdReviewsPO(driver);
+    }
+
+    public static AdminLoginPO getAdminLoginPage(WebDriver driver) {
+        return new AdminLoginPO(driver);
     }
 }

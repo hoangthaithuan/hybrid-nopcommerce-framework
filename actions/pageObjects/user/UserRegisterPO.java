@@ -1,14 +1,15 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.RegisterPageUI;
+import pageObjects.PageGenerator;
+import pageUIs.user.RegisterPageUI;
 
-public class RegisterPageObject extends BasePage {
+public class UserRegisterPO extends BasePage {
 
     private WebDriver driver;
 
-    public RegisterPageObject(WebDriver driver) {
+    public UserRegisterPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -32,9 +33,9 @@ public class RegisterPageObject extends BasePage {
         sendKeyToElement(driver, RegisterPageUI.CONFIRMPASSWORD_TEXTBOX, confirmPass);
     }
 
-    public HomePageObject clickToRegisterButton() {
+    public UserHomePO clickToRegisterButton() {
         waitForElementClickable(driver, RegisterPageUI.REGISTER_BUTTON);
         clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
-        return PageGenerator.getHomePage(driver);
+        return PageGenerator.getUserHomePage(driver);
     }
 }

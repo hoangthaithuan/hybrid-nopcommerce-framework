@@ -1,14 +1,15 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.LoginPageUI;
+import pageObjects.PageGenerator;
+import pageUIs.user.LoginPageUI;
 
-public class LoginPageObject extends BasePage {
+public class UserLoginPO extends BasePage {
 
     private WebDriver driver;
 
-    public LoginPageObject(WebDriver driver) {
+    public UserLoginPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -21,10 +22,10 @@ public class LoginPageObject extends BasePage {
 
     }
 
-    public MyaccountPageObject openMyAccountPage() {
+    public UserMyaccountPO openMyAccountPage() {
         waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
-        return PageGenerator.getMyAccountPage(driver);
+        return PageGenerator.getUserMyAccountPage(driver);
 
     }
 }

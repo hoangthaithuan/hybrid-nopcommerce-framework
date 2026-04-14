@@ -1,38 +1,38 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.BasePageUI;
-import pageUIs.SidebarUI;
+import pageObjects.PageGenerator;
+import pageUIs.user.SidebarUI;
 
-public class SidebarPageObject extends BasePage {
+public class UserSidebarPO extends BasePage {
     private WebDriver driver;
 
-    public SidebarPageObject(WebDriver driver) {
+    public UserSidebarPO(WebDriver driver) {
         this.driver = driver;
     }
 
-    public AddressPageObject openAddressPage() {
+    public UserAddressPO openAddressPage() {
         waitForElementClickable(driver, SidebarUI.ADDRESS_LINK);
         clickToElement(driver, SidebarUI.ADDRESS_LINK);
-        return PageGenerator.getAddressPage(driver);
+        return PageGenerator.getUserAddressPage(driver);
 
     }
-    public MyaccountPageObject openMyAccPage() {
+    public UserMyaccountPO openMyAccPage() {
         waitForElementClickable(driver, SidebarUI.MYACCOUNT_LINK);
         clickToElement(driver, SidebarUI.MYACCOUNT_LINK);
-        return PageGenerator.getMyAccountPage(driver);
+        return PageGenerator.getUserMyAccountPage(driver);
     }
 
-    public ProdReviewsPageObject openProdReviewPage() {
+    public UserProdReviewsPO openProdReviewPage() {
         waitForElementClickable(driver, SidebarUI.PRODREVIEW_LINK);
         clickToElement(driver, SidebarUI.PRODREVIEW_LINK);
-        return PageGenerator.getProdReviewPage(driver);
+        return PageGenerator.getUserProdReviewPage(driver);
     }
 
-    public OrderPageObject openOrderPage() {
+    public UserOrderPO openOrderPage() {
         waitForElementClickable(driver, SidebarUI.ORDER_LINK);
         clickToElement(driver, SidebarUI.ORDER_LINK);
-        return PageGenerator.getOrderPage(driver);
+        return PageGenerator.getUserOrderPage(driver);
     }
 }

@@ -1,15 +1,13 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.AddressPageUI;
-import pageUIs.MyaccountPageUI;
+import pageUIs.user.MyaccountPageUI;
 
-public class MyaccountPageObject extends SidebarPageObject {
+public class UserMyaccountPO extends UserSidebarPO {
 
     private WebDriver driver;
 
-    public MyaccountPageObject(WebDriver driver) {
+    public UserMyaccountPO(WebDriver driver) {
         // super để gọi đến parameter của thằng cha, vì thằng cha cũng khởi tạo driver
         super(driver);
         this.driver = driver;

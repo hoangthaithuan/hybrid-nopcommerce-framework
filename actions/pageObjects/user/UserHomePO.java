@@ -1,10 +1,11 @@
-package pageObjects;
+package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.HomePageUI;
+import pageObjects.PageGenerator;
+import pageUIs.user.HomePageUI;
 
-public class HomePageObject extends BasePage {
+public class UserHomePO extends BasePage {
 
     private WebDriver driver;
 
@@ -14,7 +15,7 @@ public class HomePageObject extends BasePage {
     // 3- Chạy đầu tiên khi class này được gọi (new HomePageObject)
     // 4- Có tham số hoặc không
     // 5- ko tự define hàm khởi tạo thì JVM sẽ mặc định tạo ra 1 hàm
-    public HomePageObject(WebDriver driver) {
+    public UserHomePO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -24,10 +25,10 @@ public class HomePageObject extends BasePage {
         clickToElement(driver, HomePageUI.ACCOUNTMENU_LINK);
     }
 
-    public RegisterPageObject openRegisterPage() {
+    public UserRegisterPO openRegisterPage() {
         waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToElement(driver, HomePageUI.REGISTER_LINK);
-        return PageGenerator.getRegisterPage(driver);
+        return PageGenerator.getUserRegisterPage(driver);
     }
 
     public String getRegisterSuccessMessage() {
@@ -40,9 +41,10 @@ public class HomePageObject extends BasePage {
         clickToElement(driver, HomePageUI.LOGOUT_LINK);
     }
 
-    public LoginPageObject openLoginPage() {
+    public UserLoginPO openLoginPage() {
         waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
         clickToElement(driver, HomePageUI.LOGIN_LINK);
-        return PageGenerator.getLoginPage(driver);
+        return PageGenerator.getUserLoginPage(driver);
     }
+
 }

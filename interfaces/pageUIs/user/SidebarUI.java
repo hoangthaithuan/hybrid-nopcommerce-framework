@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.user;
 
 public class SidebarUI {
     public static final String ADDRESS_LINK = "//div[@class='block-content']/ul/li/a[text()='Address Book']";

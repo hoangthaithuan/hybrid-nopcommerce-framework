@@ -1,14 +1,12 @@
-package pageObjects;
+package pageObjects.user;
 
-import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.ProdReviewsPageUI;
 
-public class ProdReviewsPageObject extends SidebarPageObject {
+public class UserProdReviewsPO extends UserSidebarPO {
 
     private WebDriver driver;
 
-    public ProdReviewsPageObject(WebDriver driver) {
+    public UserProdReviewsPO(WebDriver driver) {
         // super để gọi đến constructor của thằng cha, vì thằng cha cũng khởi tạo constructor
         super(driver);
         this.driver = driver;

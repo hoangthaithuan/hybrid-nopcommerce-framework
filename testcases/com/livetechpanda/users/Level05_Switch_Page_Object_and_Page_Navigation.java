@@ -8,19 +8,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
+import pageObjects.user.*;
 
 public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
 
     // Declare variable
     private WebDriver driver;
-    private HomePageObject homePage;
-    private RegisterPageObject registerPage;
-    private LoginPageObject loginPage;
-    private MyaccountPageObject myAccPage;
-    private AddressPageObject addressPage;
-    private OrderPageObject orderPage;
-    private ProdReviewsPageObject prodReviewPage;
+    private UserHomePO homePage;
+    private UserRegisterPO registerPage;
+    private UserLoginPO loginPage;
+    private UserMyaccountPO myAccPage;
+    private UserAddressPO addressPage;
+    private UserOrderPO orderPage;
+    private UserProdReviewsPO prodReviewPage;
 
     String firstName, lastName, emailAdress, passWord;
 
@@ -37,7 +37,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         passWord = "Trent@12345";
 
         // Page ảo được sinh ra và bắt đầu làm những action của page ảo đó
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
     }
 
     // Testcases
@@ -48,7 +48,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
 //
 //        // Từ homepage qua register page
 //        // Page đó sinh ra và bắt đầu hành động làm những action của page đó -> khởi tạo = new lên
-        registerPage = new RegisterPageObject(driver);
+        registerPage = new UserRegisterPO(driver);
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
         registerPage.enterToEmailTextBox(emailAdress);
@@ -59,7 +59,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
-        homePage = new HomePageObject(driver);
+        homePage = new UserHomePO(driver);
         Assert.assertEquals(homePage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
     }
 
@@ -71,7 +71,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         homePage.clickToAccountMenu();
         homePage.openLoginPage();
 
-        loginPage = new LoginPageObject(driver);
+        loginPage = new UserLoginPO(driver);
         loginPage.enterToEmailTextbox(emailAdress);
         loginPage.enterToPasswordTextbox(passWord);
         loginPage.openMyAccountPage();
@@ -79,7 +79,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         Alert alert = driver.switchTo().alert();
         alert.accept();
 
-        myAccPage = new MyaccountPageObject(driver);
+        myAccPage = new UserMyaccountPO(driver);
         Assert.assertTrue(myAccPage.isHelloTextDisplayed());
     }
 
