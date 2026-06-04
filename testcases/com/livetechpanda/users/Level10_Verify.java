@@ -8,9 +8,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.liveTechPD.PageGenerator;
 import pageObjects.liveTechPD.user.*;
 
-public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
+public class Level10_Verify extends BaseTest {
 
     // Declare variable
     private WebDriver driver;
@@ -29,6 +30,11 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
     @BeforeClass
     public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName);
+
+
+        // ASSERT = HARD ASSERT ( gặp fail là fail tcs luôn, ko chạy tiếp nữa)
+        // VERIFY = SOFT ASSERT (gặp fail vẫn chạy tiếp cho hết -> khó nhận biết fail chỗ nào
+
 
         // Data
         firstName = "Trent";
@@ -49,6 +55,10 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
 //        // Từ homepage qua register page
 //        // Page đó sinh ra và bắt đầu hành động làm những action của page đó -> khởi tạo = new lên
         registerPage = new UserRegisterPO(driver);
+
+        // Assert 01 -> FAILED
+        verifyEquals(registerPage.getRegisterPageTitle(), "Create an ACCOUNT"); // fail
+
         registerPage.enterToFirstNameTextBox(firstName);
         registerPage.enterToLastNameTextBox(lastName);
         registerPage.enterToEmailTextBox(emailAdress);
@@ -60,7 +70,7 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         alert.accept();
 
         homePage = new UserHomePO(driver);
-        Assert.assertEquals(homePage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.");
+        verifyEquals(homePage.getRegisterSuccessMessage(), "Thank you for registering with Main Website Store.....");
     }
 
     @Test
@@ -80,32 +90,56 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
         alert.accept();
 
         myAccPage = new UserMyaccountPO(driver);
-        Assert.assertTrue(myAccPage.isHelloTextDisplayed());
+        verifyTrue(myAccPage.isHelloTextDisplayed());
     }
 
     @Test
     public void User_03_MyAccount() {
-        Assert.assertTrue(myAccPage.isTitleDisplayed());
-        Assert.assertEquals(myAccPage.getValueOfAttribute(), "http://live.techpanda.org/index.php/customer/account/edit/");
+        verifyTrue(myAccPage.isTitleDisplayed());
+        verifyEquals(myAccPage.getValueOfAttribute(), "http://live.techpanda.org/index.php/customer/account/edit/");
     }
 
-    @Test
-    public void User_04_Switch_Page () {
-        // My account -> Address
-        addressPage = myAccPage.openAddressPage();
-
-        // Address -> Order
-        orderPage = addressPage.openOrderPage();
-
-        // Order -> Prod Review
-        prodReviewPage = orderPage.openProdReviewPage();
-
-        // Prod Review -> Address
-        addressPage = prodReviewPage.openAddressPage();
-
-        // Address -> My account
-        myAccPage = addressPage.openMyAccPage();
-    }
+//    @Test
+//    public void User_04_Dynamic_Page () {
+//        // My account -> Address
+//        addressPage = (UserAddressPO) myAccPage.openSidebarLinkByPageName("Address Book");
+//
+//        // Address -> Order
+//        orderPage = (UserOrderPO) addressPage.openSidebarLinkByPageName("My Orders");
+//
+//        // Order -> Prod Review
+//        prodReviewPage = (UserProdReviewsPO) orderPage.openSidebarLinkByPageName("My Product Reviews");
+//
+//        // Prod Review -> Address
+//        addressPage = (UserAddressPO) prodReviewPage.openSidebarLinkByPageName("Address Book");
+//
+//        // Address -> My account
+//        myAccPage = (UserMyaccountPO) addressPage.openSidebarLinkByPageName("Account Dashboard");
+//    }
+//
+//    // cách này áp dụng cho trường hợp nhiều page
+//    @Test
+//    public void User_05_Dynamic_Page() {
+//        // My account -> Address
+//        myAccPage.openSidebarLinkByPageNames("Address Book");
+//        addressPage = PageGenerator.getUserAddressPage(driver);
+//
+//        // Address -> Order
+//        addressPage.openSidebarLinkByPageNames("My Orders");
+//        orderPage = PageGenerator.getUserOrderPage(driver);
+//
+//        // Order -> Prod Review
+//        orderPage.openSidebarLinkByPageNames("My Product Reviews");
+//        prodReviewPage = PageGenerator.getUserProdReviewPage(driver);
+//
+//        // Prod Review -> Address
+//        prodReviewPage.openSidebarLinkByPageNames("Address Book");
+//        addressPage = PageGenerator.getUserAddressPage(driver);
+//
+//        // Address -> My account
+//        addressPage.openSidebarLinkByPageNames("Account Dashboard");
+//        myAccPage = PageGenerator.getUserMyAccountPage(driver);
+//    }
 
     // Post-condition
     @AfterClass

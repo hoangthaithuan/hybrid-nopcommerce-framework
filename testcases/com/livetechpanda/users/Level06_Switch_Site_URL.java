@@ -8,12 +8,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.PageGenerator;
-import pageObjects.admin.AdminLoginPO;
-import pageObjects.user.UserHomePO;
-import pageObjects.user.UserLoginPO;
-import pageObjects.user.UserMyaccountPO;
-import pageObjects.user.UserRegisterPO;
+import pageObjects.liveTechPD.PageGenerator;
+import pageObjects.liveTechPD.admin.AdminLoginPO;
+import pageObjects.liveTechPD.user.UserHomePO;
+import pageObjects.liveTechPD.user.UserLoginPO;
+import pageObjects.liveTechPD.user.UserMyaccountPO;
+import pageObjects.liveTechPD.user.UserRegisterPO;
 
 public class Level06_Switch_Site_URL extends BaseTest {
 
@@ -115,6 +115,7 @@ public class Level06_Switch_Site_URL extends BaseTest {
     public void User_02_Admin_Site_To_User_Site() {
         // lúc này thì nó đag ở trang dashboard của admin rồi nè, thao tác gì đó nhưng mà link này hỏng có vô được
         // nên lược bỏ bớt (xem video bài học tham khảo hoi), làm thao tác quay về user là được
+        // user01 - guru99com
         adminLoginPage.openPageURL(driver, userUrlValue);
         userHomePage = PageGenerator.getUserHomePage(driver);
 

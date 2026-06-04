@@ -8,9 +8,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObjects.liveTechPD.PageGenerator;
 import pageObjects.liveTechPD.user.*;
 
-public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
+public class Level07_Dynamic_Locator extends BaseTest {
 
     // Declare variable
     private WebDriver driver;
@@ -90,21 +91,45 @@ public class Level05_Switch_Page_Object_and_Page_Navigation extends BaseTest {
     }
 
     @Test
-    public void User_04_Switch_Page () {
+    public void User_04_Dynamic_Page () {
         // My account -> Address
-        addressPage = myAccPage.openAddressPage();
+        addressPage = (UserAddressPO) myAccPage.openSidebarLinkByPageName("Address Book");
 
         // Address -> Order
-        orderPage = addressPage.openOrderPage();
+        orderPage = (UserOrderPO) addressPage.openSidebarLinkByPageName("My Orders");
 
         // Order -> Prod Review
-        prodReviewPage = orderPage.openProdReviewPage();
+        prodReviewPage = (UserProdReviewsPO) orderPage.openSidebarLinkByPageName("My Product Reviews");
 
         // Prod Review -> Address
-        addressPage = prodReviewPage.openAddressPage();
+        addressPage = (UserAddressPO) prodReviewPage.openSidebarLinkByPageName("Address Book");
 
         // Address -> My account
-        myAccPage = addressPage.openMyAccPage();
+        myAccPage = (UserMyaccountPO) addressPage.openSidebarLinkByPageName("Account Dashboard");
+    }
+
+    // cách này áp dụng cho trường hợp nhiều page
+    @Test
+    public void User_05_Dynamic_Page() {
+        // My account -> Address
+        myAccPage.openSidebarLinkByPageNames("Address Book");
+        addressPage = PageGenerator.getUserAddressPage(driver);
+
+        // Address -> Order
+        addressPage.openSidebarLinkByPageNames("My Orders");
+        orderPage = PageGenerator.getUserOrderPage(driver);
+
+        // Order -> Prod Review
+        orderPage.openSidebarLinkByPageNames("My Product Reviews");
+        prodReviewPage = PageGenerator.getUserProdReviewPage(driver);
+
+        // Prod Review -> Address
+        prodReviewPage.openSidebarLinkByPageNames("Address Book");
+        addressPage = PageGenerator.getUserAddressPage(driver);
+
+        // Address -> My account
+        addressPage.openSidebarLinkByPageNames("Account Dashboard");
+        myAccPage = PageGenerator.getUserMyAccountPage(driver);
     }
 
     // Post-condition

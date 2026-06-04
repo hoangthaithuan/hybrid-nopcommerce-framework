@@ -8,10 +8,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.user.UserHomePO;
-import pageObjects.user.UserLoginPO;
-import pageObjects.user.UserMyaccountPO;
-import pageObjects.user.UserRegisterPO;
+import pageObjects.liveTechPD.user.UserHomePO;
+import pageObjects.liveTechPD.user.UserLoginPO;
+import pageObjects.liveTechPD.user.UserMyaccountPO;
+import pageObjects.liveTechPD.user.UserRegisterPO;
 
 public class Level03_Page_Object_Pattern extends BaseTest {
     /*

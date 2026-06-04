@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DataTable">
+
+<!--    <parameter name="url" value="https://www.jqueryscript.net/demo/jQuery-Plugin-For-Bootstrap-Based-Data-Table-Bootstrap-Data-Table/" />-->
+    <parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/" />
+
+    <test name="Run on Firefox browser">
+        <parameter name="browser" value="firefox" />
+        <classes>
+            <class name="com.livetechpanda.jquerycases.Level08_Table_Data" />
+        </classes>
+    </test>
+
+</suite>
